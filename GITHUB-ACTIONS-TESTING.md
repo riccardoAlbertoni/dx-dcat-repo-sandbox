@@ -110,3 +110,5 @@ behavior before merging. In particular:
 
 This experiment does not change the W3C repository settings or deploy to its
 Pages site.
+
+Temporary non-RDF validation workflow test.
