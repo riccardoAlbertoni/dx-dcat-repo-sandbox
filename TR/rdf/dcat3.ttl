@@ -1,3 +1,4 @@
+# Temporary workflow test: this comment does not change the RDF graph.
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
