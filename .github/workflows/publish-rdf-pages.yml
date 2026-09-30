@@ -1,0 +1,68 @@
+name: Publish GitHub RDF Pages
+
+# Generate and deploy only the merge result that reaches gh-pages.
+on:
+  push:
+    branches:
+      - gh-pages
+  workflow_dispatch:
+
+permissions:
+  # Pages deployment needs read access, artifact publishing, and OIDC.
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  # Keep only the newest publication when several gh-pages pushes arrive.
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      JENA_VERSION: "6.2.0"
+    steps:
+      # Build the site from the merged gh-pages commit.
+      - uses: actions/checkout@v5
+      # Jena 6.2.0 requires Java 21.
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      # Reuse the pinned Jena installation between workflow runs.
+      - name: Cache Apache Jena
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/apache-jena/6.2.0
+          key: ${{ runner.os }}-apache-jena-${{ env.JENA_VERSION }}
+      - name: Install Apache Jena
+        run: |
+          JENA_HOME="$HOME/.cache/apache-jena/${JENA_VERSION}"
+          if [ ! -x "$JENA_HOME/bin/riot" ]; then
+            mkdir -p "$JENA_HOME"
+            curl --fail --silent --show-error --location \
+              "https://archive.apache.org/dist/jena/binaries/apache-jena-${JENA_VERSION}.tar.gz" \
+              | tar -xz --strip-components=1 -C "$JENA_HOME"
+          fi
+          echo "$JENA_HOME/bin" >> "$GITHUB_PATH"
+      # Copy the site and generate JSON-LD/RDF/XML from the canonical Turtle.
+      - name: Build publication site
+        run: scripts/build-publication.sh "$RUNNER_TEMP/site"
+      # Pass the complete generated site to the deployment job.
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ runner.temp }}/site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      # GitHub Pages exposes the resulting deployment URL here.
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Publish the artifact uploaded by the build job.
+      - id: deployment
+        uses: actions/deploy-pages@v5

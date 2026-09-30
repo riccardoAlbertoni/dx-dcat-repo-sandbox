@@ -1,0 +1,56 @@
+name: Validate DCAT Turtle
+
+# Keep a check present for every pull request so it can be required by branch
+# protection; only run Jena validation when the canonical Turtle source changed.
+on:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      JENA_VERSION: "6.2.0"
+    steps:
+      # Fetch the base commit so the path filter can inspect the PR diff.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Check for DCAT Turtle changes
+        id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            dcat3:
+              - "TR/rdf/dcat3.ttl"
+      # Jena 6.2.0 requires Java 21.
+      - name: Set up Java 21
+        uses: actions/setup-java@v5
+        if: steps.filter.outputs.dcat3 == 'true'
+        with:
+          distribution: temurin
+          java-version: "21"
+      # Reuse the pinned Jena installation between workflow runs.
+      - name: Cache Apache Jena
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/apache-jena/6.2.0
+          key: ${{ runner.os }}-apache-jena-${{ env.JENA_VERSION }}
+        if: steps.filter.outputs.dcat3 == 'true'
+      - name: Install Apache Jena
+        if: steps.filter.outputs.dcat3 == 'true'
+        run: |
+          JENA_HOME="$HOME/.cache/apache-jena/${JENA_VERSION}"
+          if [ ! -x "$JENA_HOME/bin/riot" ]; then
+            mkdir -p "$JENA_HOME"
+            curl --fail --silent --show-error --location \
+              "https://archive.apache.org/dist/jena/binaries/apache-jena-${JENA_VERSION}.tar.gz" \
+              | tar -xz --strip-components=1 -C "$JENA_HOME"
+          fi
+          echo "$JENA_HOME/bin" >> "$GITHUB_PATH"
+      # Check that dcat3.ttl is syntactically valid without generating files
+      # or comparing it with derived serializations.
+      - name: Validate dcat3.ttl syntax
+        if: steps.filter.outputs.dcat3 == 'true'
+        run: |
+          "$HOME/.cache/apache-jena/${JENA_VERSION}/bin/riot" \
+            --validate TR/rdf/dcat3.ttl
