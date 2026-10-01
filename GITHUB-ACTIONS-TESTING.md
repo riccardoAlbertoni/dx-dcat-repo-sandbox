@@ -5,9 +5,10 @@ in an isolated repository before proposing their use in `w3c/dx-dcat`.
 
 ## Scope and repository layout
 
-The workflows validate `TR/rdf/dcat3.ttl` on pull requests and build/publish a
-site from the `gh-pages` branch. The publication preserves the repository tree,
-including the existing `TR/rdf/*.redirect` files, and regenerates
+The validator runs on pull requests, but only sets up Jena and checks RDF when
+`TR/rdf/dcat3.ttl` changes. The Pages publisher runs on pushes to `gh-pages`
+only when that same file changes. The publication preserves the repository
+tree, including existing `TR/rdf/*.redirect` files, and regenerates
 `TR/rdf/dcat3.jsonld` and `TR/rdf/dcat3.rdf` from the canonical Turtle.
 
 The files ported from the prepared sandbox are:
@@ -75,9 +76,9 @@ recreates its destination directory.
    protection.
 5. Confirm that the publisher declares `contents: read`, `pages: write`, and
    `id-token: write`, and uses the `github-pages` environment with
-   `actions/deploy-pages`. The bootstrap push should run the `build` and
-   `deploy` jobs; if needed, run **Publish GitHub RDF Pages** manually with
-   `workflow_dispatch`.
+   `actions/deploy-pages`. Push a commit changing `TR/rdf/dcat3.ttl` to
+   `gh-pages`; that push should run the `build` and `deploy` jobs. A push that
+   changes only other files should not start this publisher.
 6. Open the deployment URL from the Actions run and verify the document and
    RDF resources, especially `/TR/`, `/TR/rdf/dcat3.ttl`,
    `/TR/rdf/dcat3.jsonld`, and `/TR/rdf/dcat3.rdf`. Confirm expected redirects

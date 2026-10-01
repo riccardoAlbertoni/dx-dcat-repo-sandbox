@@ -1,11 +1,12 @@
 name: Publish GitHub RDF Pages
 
-# Generate and deploy only the merge result that reaches gh-pages.
+# Generate and deploy only when the canonical DCAT 3 Turtle source changes.
 on:
   push:
     branches:
       - gh-pages
-  workflow_dispatch:
+    paths:
+      - "TR/rdf/dcat3.ttl"
 
 permissions:
   # Pages deployment needs read access, artifact publishing, and OIDC.
