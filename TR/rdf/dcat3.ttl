@@ -1,3 +1,4 @@
+# Temporary test comment to verify the Pages workflow path filter.
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
