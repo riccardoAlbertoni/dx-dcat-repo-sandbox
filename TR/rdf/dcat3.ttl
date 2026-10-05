@@ -224,6 +224,7 @@ dcat:Catalog
   skos:scopeNote "Συνήθως, ένας κατάλογος δεδομένων στον Παγκόσμιο Ιστό αναπαρίσταται ως ένα στιγμιότυπο αυτής της κλάσης."@el ;
   skos:scopeNote "通常、ウェブ・ベースのデータ・カタログは、このクラスの1つのインスタンスとして表わされます。"@ja ;
   skos:scopeNote "Et webbaseret datakatalog repræsenteres typisk ved en enkelt instans af denne klasse."@da ;
+  rdfs:comment "Issue 25 independent change A."@en ;
   skos:scopeNote "Datasets and data services are examples of resources in the context of a data catalog."@en ;
 .
 dcat:CatalogRecord
