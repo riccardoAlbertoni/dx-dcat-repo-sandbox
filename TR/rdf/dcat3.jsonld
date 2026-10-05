@@ -7107,6 +7107,13 @@
           "@value": "Este axioma se necesita de manera que Protege cargue DCAT 3 sin problemas."
         }
       ]
+    },
+    {
+      "@id": "urn:issue22:stale-output-marker",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Issue 22 deliberately stale checked-in JSON-LD marker."
+      }
     }
   ]
 }
