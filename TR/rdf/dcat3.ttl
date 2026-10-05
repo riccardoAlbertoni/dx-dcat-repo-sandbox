@@ -19,6 +19,7 @@
 
 <http://www.w3.org/ns/dcat>
   a owl:Ontology ;
+  rdfs:comment "Issue 23 restore trigger after generation-failure test."@en ;
   rdfs:comment "Issue 23 generation-failure trigger."@en ;
   rdfs:comment "Issue 22 canonical Turtle source marker."@en ;
   rdfs:comment "Issue 21 temporary publication integration test."@en ;
