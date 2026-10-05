@@ -19,6 +19,8 @@ fi
 mkdir -p "$OUTPUT_DIR"
 # Validate the canonical Turtle source before converting it.
 "$RIOT" --validate "$SOURCE"
+echo "Issue 23 test: simulated failure after source validation." >&2
+exit 1
 # Generate the two machine-readable formats served by the publication site.
 "$RIOT" --output=JSONLD "$SOURCE" > "$OUTPUT_DIR/dcat3.jsonld"
 "$RIOT" --output=RDFXML "$SOURCE" > "$OUTPUT_DIR/dcat3.rdf"
