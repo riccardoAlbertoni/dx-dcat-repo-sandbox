@@ -1860,4 +1860,7 @@
     <rdfs:isDefinedBy rdf:resource="https://www.w3.org/TR/vocab-dcat-3/"/>
     <owl:inverseOf rdf:resource="http://www.w3.org/ns/dcat#inSeries"/>
   </rdf:Description>
+  <rdf:Description rdf:about="urn:issue22:stale-output-marker">
+    <rdfs:comment xml:lang="en">Issue 22 deliberately stale checked-in RDF/XML marker.</rdfs:comment>
+  </rdf:Description>
 </rdf:RDF>
