@@ -22,7 +22,6 @@ mkdir -p "$OUTPUT_DIR"
 # Generate the two machine-readable formats served by the publication site.
 "$RIOT" --output=JSONLD "$SOURCE" > "$OUTPUT_DIR/dcat3.jsonld"
 "$RIOT" --output=RDFXML "$SOURCE" > "$OUTPUT_DIR/dcat3.rdf"
-printf '{ this is not valid JSON-LD\n' > "$OUTPUT_DIR/dcat3.jsonld"
 
 # Validate both generated files so malformed output cannot be published.
 "$RIOT" --validate "$OUTPUT_DIR/dcat3.jsonld"
