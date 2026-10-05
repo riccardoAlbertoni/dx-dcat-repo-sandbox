@@ -1,4 +1,6 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
+# Intentional syntax error for issue 20 validation test:
+this is not valid Turtle
 @prefix bibo: <http://purl.org/ontology/bibo/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
