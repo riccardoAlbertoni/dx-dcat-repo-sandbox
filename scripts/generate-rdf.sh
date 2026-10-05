@@ -26,7 +26,6 @@ mkdir -p "$OUTPUT_DIR"
 # Validate both generated files so malformed output cannot be published.
 "$RIOT" --validate "$OUTPUT_DIR/dcat3.jsonld"
 "$RIOT" --validate "$OUTPUT_DIR/dcat3.rdf"
-printf '{"@id":"urn:issue23:graph-mismatch","http://www.w3.org/2000/01/rdf-schema#comment":"Deliberate graph mismatch"}\n' > "$OUTPUT_DIR/dcat3.jsonld"
 
 # Compare graphs, not serialized text, so ordering and blank-node labels do
 # not create false differences.

@@ -19,6 +19,7 @@
 
 <http://www.w3.org/ns/dcat>
   a owl:Ontology ;
+  rdfs:comment "Issue 23 final restoration trigger."@en ;
   rdfs:comment "Issue 23 graph-comparison failure trigger."@en ;
   rdfs:comment "Issue 23 restore trigger after generated-output-validation test."@en ;
   rdfs:comment "Issue 23 generated-output-validation failure trigger."@en ;
