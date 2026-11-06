@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  # Keep only the newest publication when several gh-pages pushes arrive.
+  # Cancel an older run so the newest gh-pages commit can be deployed.
   group: pages
   cancel-in-progress: true
 
