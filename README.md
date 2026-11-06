@@ -15,4 +15,4 @@ This repository contains the *Dataset Catalogue Vocabulary* (DCAT) work of the *
   - [Second Public Working Draft (2PWD)](https://www.w3.org/TR/2021/WD-vocab-dcat-3-20210504/)
   - [First Public Working Draft (FPWD)](https://www.w3.org/TR/2020/WD-vocab-dcat-3-20201217/)
 
-<!-- Issue 19 required-check test: README-only change. -->
+<!-- RDF-generation-maintaining-Jekyll test #54: README-only change. -->
