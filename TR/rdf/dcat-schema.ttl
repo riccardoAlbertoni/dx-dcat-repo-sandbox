@@ -1,5 +1,4 @@
-# Issue 19 workflow filter test: unrelated RDF file only.
-# Issue 19 required-check retest: unrelated RDF change.
+# RDF-generation-maintaining-Jekyll test #54: unrelated RDF change only.
 # baseURI: http://www.w3.org/ns/dcat/schema
 # imports: http://schema.org/
 # imports: http://www.w3.org/ns/dcat
