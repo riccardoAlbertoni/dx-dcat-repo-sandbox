@@ -19,15 +19,6 @@
 
 <http://www.w3.org/ns/dcat>
   a owl:Ontology ;
-  rdfs:comment "Issue 24 concurrency test version D."@en ;
-  rdfs:comment "Issue 23 final restoration trigger."@en ;
-  rdfs:comment "Issue 23 graph-comparison failure trigger."@en ;
-  rdfs:comment "Issue 23 restore trigger after generated-output-validation test."@en ;
-  rdfs:comment "Issue 23 generated-output-validation failure trigger."@en ;
-  rdfs:comment "Issue 23 restore trigger after generation-failure test."@en ;
-  rdfs:comment "Issue 23 generation-failure trigger."@en ;
-  rdfs:comment "Issue 22 canonical Turtle source marker."@en ;
-  rdfs:comment "Issue 21 temporary publication integration test."@en ;
   adms:versionNotes "Esta es una copia del vocabulario DCAT 3 disponible en https://www.w3.org/ns/dcat.ttl"@es ;
   adms:versionNotes "This is an updated copy of the DCAT 3 vocabulary, taken from https://www.w3.org/ns/dcat.ttl"@en ;
   adms:versionNotes "Toto je aktualizovaná kopie slovníku DCAT 3 z https://www.w3.org/ns/dcat.ttl"@cs ;
@@ -224,8 +215,6 @@ dcat:Catalog
   skos:scopeNote "Συνήθως, ένας κατάλογος δεδομένων στον Παγκόσμιο Ιστό αναπαρίσταται ως ένα στιγμιότυπο αυτής της κλάσης."@el ;
   skos:scopeNote "通常、ウェブ・ベースのデータ・カタログは、このクラスの1つのインスタンスとして表わされます。"@ja ;
   skos:scopeNote "Et webbaseret datakatalog repræsenteres typisk ved en enkelt instans af denne klasse."@da ;
-  rdfs:comment "Issue 26 conflicting source edit B."@en ;
-  rdfs:comment "Issue 26 conflicting source edit A."@en ;
   skos:scopeNote "Datasets and data services are examples of resources in the context of a data catalog."@en ;
 .
 dcat:CatalogRecord
@@ -547,7 +536,6 @@ dcat:Role
   skos:scopeNote "Utilizzato in una relazione qualificata per specificare il ruolo di un'entità rispetto a un'altra entità. Si raccomanda che il valore sia preso da un vocabolario controllato di ruoli di entità come ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode, IANA Registry of Link Relations https://www.iana.org/assignments/link-relation, DataCite metadata schema, o MARC relators https://id.loc.gov/vocabulary/relators."@it ;
   skos:scopeNote "Anvendes i forbindelse med kvalificerede krediteringer til at angive aktørens rolle i forhold til en entitet. Det anbefales at værdierne styres som et kontrolleret udfaldsrum med aktørroller, såsom http://registry.it.csiro.au/def/isotc211/CI_RoleCode."@da ;
   skos:scopeNote "Anvendes i forbindelse med kvalificerede relationer til at specificere en entitets rolle i forhold til en anden entitet. Det anbefales at værdierne styres med et kontrolleret udfaldsrum for for entitetsroller såsom: ISO 19115 DS_AssociationTypeCode http://registry.it.csiro.au/def/isotc211/DS_AssociationTypeCode; IANA Registry of Link Relations https://www.iana.org/assignments/link-relation;  DataCite metadata schema;  MARC relators https://id.loc.gov/vocabulary/relators."@da ;
-  rdfs:comment "Issue 25 independent change B."@en ;
 .
 
 dcat:accessService
