@@ -6,10 +6,12 @@ in an isolated repository before proposing their use in `w3c/dx-dcat`.
 ## Scope and repository layout
 
 The validator runs on pull requests, but only sets up Jena and checks RDF when
-`TR/rdf/dcat3.ttl` changes. The Pages publisher runs on pushes to `gh-pages`
-only when that same file changes. The publication preserves the repository
-tree, including existing `TR/rdf/*.redirect` files, and regenerates
-`TR/rdf/dcat3.jsonld` and `TR/rdf/dcat3.rdf` from the canonical Turtle.
+`TR/rdf/dcat3.ttl` changes. The Pages publisher runs on every push to
+`gh-pages`, prepares the complete source tree, regenerates
+`TR/rdf/dcat3.jsonld` and `TR/rdf/dcat3.rdf` from the canonical Turtle, then
+builds the site with GitHub Pages' Jekyll action. The repository has no custom
+Jekyll configuration, matching the current `w3c/dx-dcat` setup. This preserves
+the Jekyll-rendered root README and existing HTML under `/TR/`.
 
 The files ported from the prepared sandbox are:
 
@@ -34,20 +36,21 @@ where you have administrative access.
 ## Local verification
 
 Use Java 21 and Apache Jena 6.2.0, matching the workflows. Put Jena's `bin`
-directory on `PATH`, then run from the working copy:
+directory on `PATH`, then prepare the Jekyll source from the working copy:
 
 ```sh
 riot --validate TR/rdf/dcat3.ttl
-scripts/generate-rdf.sh
-scripts/build-publication.sh /tmp/dx-dcat-pages
+scripts/build-publication.sh .pages-source
 ```
 
-The generator validates the Turtle source, generates JSON-LD and RDF/XML,
-validates both outputs, then uses `rdfcompare` to check graph equivalence.
-The publication build runs generation against the copied files. Inspect
-`/tmp/dx-dcat-pages/TR/rdf/` and confirm the redirect files and the rest of the
-TR site are present. Use a temporary path outside the checkout: the build
-recreates its destination directory.
+The preparation step copies the complete tree and generates RDF in
+`.pages-source/TR/rdf/`. The generator validates the Turtle source, generates
+JSON-LD and RDF/XML, validates both outputs, and compares their graphs with
+`rdfcompare`. To preview locally, build that prepared source with the same
+GitHub Pages Jekyll environment used by the workflow; inspect the resulting
+root page, `/TR/`, RDF endpoints, redirects, and other site content. The
+preparation step recreates its destination, so use only the dedicated
+`.pages-source` path for it.
 
 ## Hosted test in a separate repository
 
@@ -76,9 +79,9 @@ recreates its destination directory.
    protection.
 5. Confirm that the publisher declares `contents: read`, `pages: write`, and
    `id-token: write`, and uses the `github-pages` environment with
-   `actions/deploy-pages`. Push a commit changing `TR/rdf/dcat3.ttl` to
-   `gh-pages`; that push should run the `build` and `deploy` jobs. A push that
-   changes only other files should not start this publisher.
+   `actions/deploy-pages`. Every push to `gh-pages` should run the build and
+   deploy jobs, including changes to HTML, styles, images, redirects, README,
+   or Turtle.
 6. Open the deployment URL from the Actions run and verify the document and
    RDF resources, especially `/TR/`, `/TR/rdf/dcat3.ttl`,
    `/TR/rdf/dcat3.jsonld`, and `/TR/rdf/dcat3.rdf`. Confirm expected redirects

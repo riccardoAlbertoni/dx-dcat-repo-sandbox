@@ -1,12 +1,10 @@
 name: Publish GitHub RDF Pages
 
-# Generate and deploy only when the canonical DCAT 3 Turtle source changes.
+# Generate RDF and publish the Jekyll site on every gh-pages push.
 on:
   push:
     branches:
       - gh-pages
-    paths:
-      - "TR/rdf/dcat3.ttl"
 
 permissions:
   # Pages deployment needs read access, artifact publishing, and OIDC.
@@ -27,6 +25,8 @@ jobs:
     steps:
       # Build the site from the merged gh-pages commit.
       - uses: actions/checkout@v5
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
       # Jena 6.2.0 requires Java 21.
       - name: Set up Java 21
         uses: actions/setup-java@v5
@@ -49,13 +49,19 @@ jobs:
               | tar -xz --strip-components=1 -C "$JENA_HOME"
           fi
           echo "$JENA_HOME/bin" >> "$GITHUB_PATH"
-      # Copy the site and generate JSON-LD/RDF/XML from the canonical Turtle.
-      - name: Build publication site
-        run: scripts/build-publication.sh "$RUNNER_TEMP/site"
+      # Prepare a complete Jekyll source tree with fresh RDF serializations.
+      - name: Prepare publication source
+        run: scripts/build-publication.sh .pages-source
+      # Build with GitHub Pages' Jekyll environment and defaults.
+      - name: Build Jekyll site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .pages-source
+          destination: ./_site
       # Pass the complete generated site to the deployment job.
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: ${{ runner.temp }}/site
+          path: ./_site
   deploy:
     needs: build
     runs-on: ubuntu-latest
