@@ -52,6 +52,24 @@ root page, `/TR/`, RDF endpoints, redirects, and other site content. The
 preparation step recreates its destination, so use only the dedicated
 `.pages-source` path for it.
 
+## Pages deployment wait and retry
+
+In the first sandbox publication for this workflow, source preparation, the
+Jekyll build, and artifact upload succeeded, but the Pages deployment remained
+queued and then updating until `actions/deploy-pages` reached its 10-minute
+timeout and cancelled it. The `error_count: 10` input is a limit for errors
+while polling deployment status; it does not mean ten deployment-status
+polls failed.
+
+Rerunning the failed deploy job for the same commit immediately returned
+`Deployment cancelled`, because the deployment is identified by that commit.
+To make a fresh attempt, push a new commit to `gh-pages`, which starts a new
+publication run. Do not treat the site as updated, or proceed with the
+checklist in issue
+[#53](https://github.com/riccardoAlbertoni/dx-dcat-repo-sandbox/issues/53),
+until the deploy job succeeds and the published Pages content has been
+manually checked.
+
 ## Hosted test in a separate repository
 
 1. Create a personal fork or a separate GitHub repository from `w3c/dx-dcat`;
