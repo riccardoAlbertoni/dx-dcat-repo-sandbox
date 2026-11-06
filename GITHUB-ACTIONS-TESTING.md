@@ -3,6 +3,10 @@
 This guide describes how to test the RDF validation and GitHub Pages workflows
 in an isolated repository before proposing their use in `w3c/dx-dcat`.
 
+For the repository-side GitHub configuration (Actions permissions, Pages
+source, and required status checks), see
+[Deployment on GitHub: Instructions](./DEPLOYMENT-ON-GITHUB-INSTRUCTIONS.md).
+
 ## Scope and repository layout
 
 The validator runs on pull requests, but only sets up Jena and checks RDF when
