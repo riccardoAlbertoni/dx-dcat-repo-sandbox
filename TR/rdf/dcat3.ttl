@@ -19,7 +19,6 @@
 
 <http://www.w3.org/ns/dcat>
   a owl:Ontology ;
-  rdfs:comment "RDF-generation-maintaining-Jekyll test #56: valid Turtle and HTML publication."@en ;
   adms:versionNotes "Esta es una copia del vocabulario DCAT 3 disponible en https://www.w3.org/ns/dcat.ttl"@es ;
   adms:versionNotes "This is an updated copy of the DCAT 3 vocabulary, taken from https://www.w3.org/ns/dcat.ttl"@en ;
   adms:versionNotes "Toto je aktualizovaná kopie slovníku DCAT 3 z https://www.w3.org/ns/dcat.ttl"@cs ;
