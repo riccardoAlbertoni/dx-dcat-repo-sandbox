@@ -7114,6 +7114,13 @@
         "@language": "en",
         "@value": "Issue 22 deliberately stale checked-in JSON-LD marker."
       }
+    },
+    {
+      "@id": "urn:test57:stale-checked-in-output",
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "RDF-generation-maintaining-Jekyll test #57: stale checked-in JSON-LD marker."
+      }
     }
   ]
 }

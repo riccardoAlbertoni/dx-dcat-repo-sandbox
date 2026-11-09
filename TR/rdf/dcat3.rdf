@@ -1863,4 +1863,7 @@
   <rdf:Description rdf:about="urn:issue22:stale-output-marker">
     <rdfs:comment xml:lang="en">Issue 22 deliberately stale checked-in RDF/XML marker.</rdfs:comment>
   </rdf:Description>
+  <rdf:Description rdf:about="urn:test57:stale-checked-in-output">
+    <rdfs:comment xml:lang="en">RDF-generation-maintaining-Jekyll test #57: stale checked-in RDF/XML marker.</rdfs:comment>
+  </rdf:Description>
 </rdf:RDF>
