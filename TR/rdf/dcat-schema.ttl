@@ -1,4 +1,3 @@
-# RDF-generation-maintaining-Jekyll test #54: unrelated RDF change only.
 # baseURI: http://www.w3.org/ns/dcat/schema
 # imports: http://schema.org/
 # imports: http://www.w3.org/ns/dcat
