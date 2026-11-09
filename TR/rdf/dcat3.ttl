@@ -178,6 +178,8 @@
 dcat:Catalog
   a rdfs:Class ;
   a owl:Class ;
+  rdfs:comment "A curated collection of metadata about resources (e.g., datasets and data services in the context of a data catalog)."@en ;
+  rdfs:comment "RDF-generation-maintaining-Jekyll test #61: conflicting source edit B."@en ;
   rdfs:comment "RDF-generation-maintaining-Jekyll test #61: conflicting source edit A."@en ;
   rdfs:comment "Una colección curada de metadatos sobre recursos (por ejemplo, conjuntos de datos y servicios de datos en el contexto de un catálogo de datos)."@es ;
   rdfs:comment "Una raccolta curata di metadati sulle risorse (ad es. sui dataset e relativi servizi nel contesto di cataloghi di dati)."@it ;
